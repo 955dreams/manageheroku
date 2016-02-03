@@ -1,5 +1,8 @@
+require 'platform-api'
 require "manageheroku/version"
+require "manageheroku/formation"
+require "manageheroku/conf"
+require "manageheroku/heroku"
 
 module Manageheroku
-  # Your code goes here...
 end

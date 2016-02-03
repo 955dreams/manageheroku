@@ -1,0 +1,20 @@
+oauth-token: "the-magic-oauth-token"
+apps:
+  - name: "myapp-development"
+    procs:
+      - process: "web"
+        quantity: 0
+      - process: "resque-low"
+        quantity: 0
+  - name: "myapp-staging"
+    procs:
+      - process: "web"
+        quantity: 0
+      - process: "resque-low"
+        quantity: 0
+  - name: "myapp-production"
+    procs:
+      - process: "web"
+        quantity: 0
+      - process: "resque-low"
+        quantity: 0
