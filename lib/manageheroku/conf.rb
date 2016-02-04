@@ -11,8 +11,8 @@ module Manageheroku
     end
 
     def formations
-      # @conf_data[:apps]
-      # TODO return names of all formations in conf file
+      formation_objects = @conf_data["formations"]
+      formation_objects.map{|formation_object| Manageheroku::Formation.new(formation_object["name"], formation_object["procs"]) }
     end
   end
 end

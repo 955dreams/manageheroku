@@ -1,5 +1,5 @@
 oauth-token: "the-magic-oauth-token"
-apps:
+formations:
   - name: "myapp-development"
     procs:
       - process: "web"
@@ -12,7 +12,7 @@ apps:
         quantity: 0
       - process: "resque-low"
         quantity: 0
-  - name: "myapp-production"
+  - name: "myapp-performance"
     procs:
       - process: "web"
         quantity: 0
