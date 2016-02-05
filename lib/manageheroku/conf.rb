@@ -1,9 +1,10 @@
 require 'yaml'
+require 'erb'
 module Manageheroku
   class Conf
     def initialize(conf_file)
       @conf_data = {}
-      @conf_data = YAML.load_file(conf_file)
+      @conf_data = YAML.load(ERB.new(Pathname.new(conf_file).read).result)
     end
 
     def oauth_token

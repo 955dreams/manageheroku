@@ -1,4 +1,4 @@
-oauth-token: "the-magic-oauth-token"
+oauth-token: <%= ENV["TEST_VAL"] || "the-magic-oauth-token" %>
 formations:
   - name: "myapp-development"
     procs:
