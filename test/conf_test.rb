@@ -17,6 +17,7 @@ class ConfTest < MiniTest::Test
       ENV["TEST_VAL"] = "erb_is_great"
       conf = Manageheroku::Conf.new(File.join(File.dirname(__FILE__), 'sample_conf.yml'))
       conf.oauth_token.must_equal "erb_is_great"
+      ENV["TEST_VAL"] = nil
     end
   end
 end
