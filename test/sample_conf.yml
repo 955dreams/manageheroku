@@ -16,5 +16,6 @@ formations:
     procs:
       - process: "web"
         quantity: 0
+        size: "2X"
       - process: "resque-low"
         quantity: 0
