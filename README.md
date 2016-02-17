@@ -50,6 +50,10 @@ This config file is for an imaginary ecommerce application that is composed of a
 
 Your application can programmatically run code like that to scale your applications based on a schedule or whatever your needs are. Currently your dyno formation sizes and quantities are the only things updatable.
 
+### Real World Usage
+
+We have manageheroku config files for shutting down and starting up all of our internal environments: development, staging and performance. Then with cron (or resque scheduler) all these environments shut down at 8pm and start back up at 8am, so we're not paying for loads of resources that aren't being used.  We also use manageheroku config files for storing various interesting configurations of the application for our performance testing environments.
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/manageheroku/fork )
