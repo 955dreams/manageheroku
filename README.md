@@ -26,7 +26,7 @@ Typical usage is to automate scaling any number of services through config files
         procs:
           - process: "web"
             quantity: 4
-            size: "2X"
+            size: "standard-2X"
           - process: "resque"
             quantity: 1
       - name: "pricing-service-staging"
@@ -48,7 +48,7 @@ This config file is for an imaginary ecommerce application that is composed of a
       heroku = Manageheroku::Heroku.new(config_file)
       heroku.update!
 
-Your application can programmatically run code like that to scale your applications based on a schedule or whatever your needs are. Currently your dyno formation sizes and quantities are the only things updatable.
+Your application can programmatically run code like that to scale your applications based on a schedule or whatever your needs are. Currently your dyno formation sizes and quantities are the only things updatable. You can find a list of dyno types in heroku docs https://devcenter.heroku.com/articles/dyno-types
 
 ### Real World Usage
 
