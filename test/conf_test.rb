@@ -13,6 +13,12 @@ class ConfTest < MiniTest::Test
       conf.formations.last.name.must_equal "myapp-performance"
     end
 
+    it "must update all the apps" do
+      conf = Manageheroku::Conf.new(File.join(File.dirname(__FILE__), 'sample_conf.yml'))
+      conf.apps.first.name.must_equal "myapp-development"
+      conf.apps.last.name.must_equal "myapp-staging"
+    end
+
     it "supports ERB magic in the config file" do
       ENV["TEST_VAL"] = "erb_is_great"
       conf = Manageheroku::Conf.new(File.join(File.dirname(__FILE__), 'sample_conf.yml'))
