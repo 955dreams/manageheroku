@@ -1,6 +1,6 @@
 # Manageheroku
 
-Manage Heroku App Formations
+Manage Heroku App Formations and Apps with YML config files. Allows you to version control important application attributes, and manage configuration for different environments and scenarios.
 
 ## Installation
 
@@ -21,6 +21,13 @@ Or install it yourself as:
 Typical usage is to automate scaling any number of services through config files. For example:
 
     oauth-token: <%= ENV["HEROKU_OAUTH_TOKEN"] %>
+    apps:
+      - name: "commerce-app-staging"
+        maintenance: false
+      - name: "pricing-service-staging"
+        maintenance: false
+      - name: "messaging-service-staging"
+        maintenance: false
     formations:
       - name: "commerce-app-staging"
         procs:
@@ -49,6 +56,14 @@ This config file is for an imaginary ecommerce application that is composed of a
       heroku.update!
 
 Your application can programmatically run code like that to scale your applications based on a schedule or whatever your needs are. Currently your dyno formation sizes and quantities are the only things updatable. You can find a list of dyno types in heroku docs https://devcenter.heroku.com/articles/dyno-types
+
+### Apps
+
+The apps section of the config file allows you to configure attributes of a list of apps. Configurable attributes are maintenance mode and build stack. See https://devcenter.heroku.com/articles/platform-api-reference#app-update
+
+### Formations
+
+The formations section of the config file allows you to configure dyno formations for a list of apps. See https://devcenter.heroku.com/articles/platform-api-reference#formation-batch-update for details.
 
 ### Real World Usage
 

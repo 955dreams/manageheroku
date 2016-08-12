@@ -3,8 +3,9 @@ require File.join(File.dirname(__FILE__), 'test_helper')
 class HerokuTest < MiniTest::Test
   describe "heroku" do
     # it "really works" do
-    #   conf_file_path = File.join(File.dirname(__FILE__), 'analysis_conf.yml')
+    #   conf_file_path = File.join(File.dirname(__FILE__), 'shutdown_development_conf.yml')
     #   heroku = Manageheroku::Heroku.new(conf_file_path)
+    #   heroku.verbose = true
     #   heroku.update!
     # end
     #
@@ -34,12 +35,21 @@ class HerokuTest < MiniTest::Test
       FormationStub.new
     end
 
+    def app
+      AppStub.new
+    end
+
     class FormationStub
       def batch_update(*params)
         response_params = {body: {"id"=>"Invalid params", "message"=>"Cannot update the same process twice"}.to_json,
                            status: "422"
         }
         raise Excon::Errors::UnprocessableEntity.new("Oh ye gods!", nil, Excon::Response.new(response_params))
+      end
+    end
+
+    class AppStub
+      def update(*params)
       end
     end
   end
@@ -49,13 +59,31 @@ class HerokuTest < MiniTest::Test
       FormationStub.new
     end
 
+    def app
+      AppStub.new
+    end
+
     class FormationStub
       def batch_update(*params)
         response_params = { status: "503" }
         raise Excon::Errors::ServiceUnavailable.new("Et tu Heroku?", nil, Excon::Response.new(response_params))
       end
     end
+
+    class AppStub
+      def update(*params)
+      end
+    end
   end
 
+  class FakeHash
+    def initialize(desired_response)
+      @desired_response = desired_response
+    end
+
+    def [](name)
+      @desired_response
+    end
+  end
 end
 
