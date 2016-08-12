@@ -3,8 +3,9 @@ require File.join(File.dirname(__FILE__), 'test_helper')
 class HerokuTest < MiniTest::Test
   describe "heroku" do
     # it "really works" do
-    #   conf_file_path = File.join(File.dirname(__FILE__), 'analysis_conf.yml')
+    #   conf_file_path = File.join(File.dirname(__FILE__), 'shutdown_development_conf.yml')
     #   heroku = Manageheroku::Heroku.new(conf_file_path)
+    #   heroku.verbose = true
     #   heroku.update!
     # end
     #
@@ -34,8 +35,8 @@ class HerokuTest < MiniTest::Test
       FormationStub.new
     end
 
-    def apps
-      FakeHash.new(AppStub.new)
+    def app
+      AppStub.new
     end
 
     class FormationStub
@@ -58,8 +59,8 @@ class HerokuTest < MiniTest::Test
       FormationStub.new
     end
 
-    def apps
-      FakeHash.new(AppStub.new)
+    def app
+      AppStub.new
     end
 
     class FormationStub

@@ -2,12 +2,15 @@ module Manageheroku
   class Heroku
 
     attr_reader :errors
+    attr_accessor :verbose
+
     def initialize(conf_file, api_object=nil)
       @conf = Manageheroku::Conf.new(conf_file)
       @formations = @conf.formations
       @apps = @conf.apps
       @heroku = api_object || PlatformAPI.connect_oauth(@conf.oauth_token)
       @errors = []
+      @verbose = false
     end
 
     def update!
@@ -20,7 +23,8 @@ module Manageheroku
     def update_apps!
       @apps.each do |app|
         begin
-          @heroku.apps[app.name].update(app.attributes)
+          response = @heroku.app.update(*app.update_params)
+          log_info("Updating App #{app.name}:", response) if @verbose
         rescue StandardError => e
           log_errors e
           raise e
@@ -31,12 +35,17 @@ module Manageheroku
     def update_formations!
       @formations.each do |formation|
         begin
-          @heroku.formation.batch_update(*formation.update_params)
+          response = @heroku.formation.batch_update(*formation.update_params)
+          log_info("Updating Formation for #{formation.name}:", response) if @verbose
         rescue StandardError => e
           log_errors e
           raise e
         end
       end
+    end
+
+    def log_info(*log_lines)
+      log_lines.each{ |line| puts line }
     end
 
     def log_errors(e)

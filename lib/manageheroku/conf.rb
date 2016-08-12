@@ -18,7 +18,7 @@ module Manageheroku
 
     def apps
       app_objects = @conf_data["apps"]
-      app_objects.map{|app_object| Manageheroku::App.new(app_object["name"], app_object["attributes"])}
+      app_objects.map{|app_object| Manageheroku::App.new(app_object["name"], app_object)}
     end
   end
 end
