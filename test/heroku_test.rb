@@ -76,14 +76,5 @@ class HerokuTest < MiniTest::Test
     end
   end
 
-  class FakeHash
-    def initialize(desired_response)
-      @desired_response = desired_response
-    end
-
-    def [](name)
-      @desired_response
-    end
-  end
 end
 
