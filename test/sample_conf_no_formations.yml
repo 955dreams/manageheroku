@@ -1,0 +1,7 @@
+oauth-token: <%= ENV["TEST_VAL"] || "the-magic-oauth-token" %>
+
+apps:
+  - name: "myapp-development"
+    maintenance: true
+  - name: "myapp-staging"
+    maintenance: true
